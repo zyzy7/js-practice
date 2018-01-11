@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>用定位实现生成10/100个li</title>
+    <style>
+        body,ul{
+            margin:0;
+            padding:0;
+        }
+        li{
+            position:absolute;
+            list-style: none;
+            text-align:center;
+            margin-bottom:5px;
+            width: 50px;
+            height: 50px;
+            border:1px #000 solid;
+            background:red;
+            line-height:50px;
+            font-size:25px;
+        }
+    </style>
+</head>
+<body>
+<ul></ul>
+<script>
+    var oContain=document.querySelector("ul");
+//    for(var i=0;i<10;i++){
+//        var list=document.createElement("li");
+//        list.innerHTML=i+1;
+//        list.style.left=i*55+"px";
+//        oContain.appendChild(list);
+//    }
+    //自动生成10个li
+
+    for(var i=0;i<100;i++){
+        var list=document.createElement("li");
+        list.innerHTML=i+1;
+        list.style.top=Math.floor(i/10)*55+"px";
+        list.style.left=i%10*55+"px";
+        oContain.appendChild(list);
+    }
+    //自动生成100个li
+</script>
+</body>
+</html>

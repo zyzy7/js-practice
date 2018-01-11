@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>论坛留言的信息列表</title>
+    <style>
+        body{
+            margin-left: 150px;
+            font-size: 13px;
+        }
+        p,form,dd,dt,h1,h2,h3,h4,h5{
+            margin:0;
+        }
+        ul{
+            display: inline-block;
+            margin:0;
+            padding:0;
+        }
+        li{
+            list-style:none;
+        }
+        .user{
+            position:relative;
+            width: 162px;
+            padding:13px 20px 30px;
+            background:#e5edf2;
+            border: 1px solid #cdcdcd;
+            box-sizing:border-box;
+        }
+        #user-name{
+            padding-bottom: 13px;
+            border-bottom: dashed 1px #cdcdcd;
+        }
+        #user-name a{
+            color: #333356;
+            text-decoration:none;
+        }
+        img{
+            padding: 13px 0;
+            border:0;
+        }
+        .d-img-block{
+            width: 120px;
+            height: 170px;
+        }
+        .d-p-none{
+            position:absolute;
+            top:39px;
+            left:0;
+            width: 451px;
+            height: 218px;
+            background:#fff;
+            border:1px solid #cdcdcd;
+            display: none;
+            /*background: #eee;*/
+        }
+        .d-img-none{
+            width: 122px;
+            height:149px;
+        }
+        .intro{
+            color:#e5ede0;
+        }
+        .d-right{
+            float: right;
+        }
+    </style>
+    <script>
+        window.onload=function (){
+            var inone=document.getElementsByClassName("d-img-block")[0];
+            var dnone=document.getElementsByClassName("d-p-none")[0];
+            inone.onmousemove=function a(){
+//                var dnone=document.getElementsByClassName("d-p-none")[0];
+                    dnone.style.display="block";
+                };
+            dnone.onmouseleave=function b(){
+                dnone.style.display="none";
+            };
+//            inone.onmouseout=function b(){
+
+        }
+
+
+    </script>
+</head>
+<body>
+    <div class="user">
+        <p id="user-name"><a href="#">name</a></p>
+        <img class="d-img-block" src="pictures/logo2.png" alt="head"/>
+        <div class="d-p-none" style="display:none;">
+            <ul>
+                <li><img class="d-img-none" src="pictures/logo2.png" alt="head"/></li>
+                <li><a href="#">发短消息</a></li>
+                <li><a href="#">加为好友</a></li>
+            </ul>
+            <div class="d-right">
+                <ul>
+                    <li><a href="#"><span>name</span>当前在线</a></li>
+                    <li><span>积分</span><span>16</span></li>
+                    <li><span>阅读权限</span><span>1623</span></li>
+                    <li><span>最后登录</span><time>2010-9-24</time></li>
+                    <li><span>精华</span><span>1643</span></li>
+                </ul>
+                <ul>
+                    <li><span>金币</span><span>16</span></li>
+                    <li><span>阅读权限</span><span>1623</span></li>
+                    <li><span>个体力</span><time>238</time></li>
+                    <li><span>注册时间</span><span>2008-10-4</span></li>
+                </ul>
+            </div>
+        </div>
+        <p class="intro">自我介绍</p>
+        <a href="#">小太阳</a>
+        <ul>
+            <li><span>积分</span><span>3850</span></li>
+            <li><span>UID</span><span>3850</span></li>
+            <li><span>帖子</span><span>3502</span></li>
+            <li><span>威望</span><span>4</span></li>
+            <li><span>金币</span><span>672</span></li>
+            <li><span>体力</span><span>756</span></li>
+            <li><span>激情</span><span>3850</span></li>
+            <li><span>注册时间</span><span>2008-10-4</span></li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh">
+    <meta charset="UTF-8">
+    <title>模拟手机短信</title>
+    <style>
+        body,p{
+            margin:0;
+        }
+        .wrap{
+            position:relative;
+            top:74px;
+            left:34px;
+            height:330px;
+            width:184px;
+            background:#fff;
+            border:1px solid green;
+            font-size:0;
+        }
+        .bottom{
+            position:absolute;
+            bottom:0;
+            width:184px;
+            height:45px;
+            background: #fff;
+            border-top:1px #c7cbca solid;
+        }
+        .text,.img,.btn{
+            vertical-align: middle;
+            height: 25px;
+            margin:8px 5px 8px 0;
+        }
+        .img{
+            display: inline-block;
+            box-sizing:wrap-box;
+            width:25px;
+            background:url(pic/bg-head.jpg) no-repeat 0 0;
+            border:2px #c7cbca solid;
+            cursor:pointer;
+        }
+        .text{
+            width:110px;
+        }
+        .btn {
+            display: inline-block;
+            font-size:13px;
+            line-height: 25px;
+            text-decoration:none;
+            color:#666;
+        }
+        .btn:hover{
+            color:#000;
+        }
+        .h-left,.h-right,.snt-tx{
+            vertical-align: top;
+        }
+        .h-left,.h-right{
+            display: inline-block;
+            box-sizing:border-box;
+            margin: 0 5px;
+            width:25px;
+            height: 25px;
+            border: 1px solid #666;
+        }
+        .h-left{
+            background:url(pic/bg-head.jpg) no-repeat 0 0;
+        }
+        .h-right{
+            background:url(pic/bg-head.jpg) no-repeat -29px 0;
+        }
+        .snt-tx{
+            display:inline-block;
+            margin:0;
+            padding:3px;
+            max-width: 160px;
+            line-height:22px;
+            font-size:13px;
+            background: #c0beb7;
+        }
+        .snt-wrap{
+            margin:2px;
+            padding:0;
+            min-height:25px;
+            max-width:184px;
+        }
+        #content{
+            width: 186px;
+            height:280px;
+            overflow-y:scroll;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap" id="wrap">
+        <!--文字区域-->
+        <div id="content"></div>
+        <div class="bottom">
+            <!--底部编辑区-->
+            <div class="img"></div>
+            <input class="text" type="text" value=""/>
+            <a class="btn" href="#">发送</a>
+        </div>
+        <!--如果这个部分作为innerHTML加一遍就失效，设置 innerHTML 将会破坏现有的已注册了事件处理函数的 HTML 元素-->
+    </div>
+    <script>
+        window.onload=function send(){
+            var img=document.getElementsByClassName("img")[0];
+            var text=document.getElementsByClassName("text")[0];
+            var btn=document.getElementsByClassName("btn")[0];
+//            var owrap=document.getElementsByClassName("wrap")[0];
+            var ocontent=document.getElementById("content");
+            var odd=false;//开始为右边对话框用户头像
+            img.onclick=function (){
+                if(odd){
+                    //如果为左边对话框用户头像，更改头像，值
+                    img.style.background="url(pic/bg-head.jpg) no-repeat 0 0";
+                    odd=false;
+                }
+                else{
+                    //如果为右边边对话框用户头像，更改头像，值
+                    img.style.background="url(pic/bg-head.jpg) no-repeat -29px 0";
+                    odd=true;
+                }
+            };
+            btn.onclick=function () {
+                if (text.value == "") {
+//                    如果对话框内没有文字
+                    alert("输入文字");
+                }
+                else {
+//                    对话框有内容
+                    if (odd) {
+                        //  如果是左边对话框用户
+                        ocontent.innerHTML =ocontent.innerHTML + "<p class='snt-wrap' style='text-align:right;'><span class='snt-tx'>" +
+                        text.value + "</span>" + "<a href='javacript:void(0);' class='h-right'></a></p>";
+//                        尾部再加ocontent.innerHTML出现相反聊天内容出现顺序
+                    }
+                    else {
+//                    如果是左边对话框用户
+                        ocontent.innerHTML += "<p class='snt-wrap' style='text-align:left;'><a href='javacript:void(0);'class='h-left'></a><span class='snt-tx'>"
+                                + text.value + "</span>" + "</p>";
+                        }
+
+                    }
+                    text.value = '';
+//                清空输入栏
+            };
+        };
+    </script>
+</body>
+</html>

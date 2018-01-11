@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh">
+    <meta charset="UTF-8">
+    <title>生成图片并操作奇偶行</title>
+    <style>
+        body{
+            background:#eee;
+        }
+        .area{
+            width:600px;
+
+        }
+        .photo{
+            margin: 5px;
+            height:80px;
+            width:80px;
+            border:6px solid #fff;
+            -webkit-border-radius:43px;
+            -ms-border-radius:43px;
+            -moz-border-radius:43px;
+            -o-border-radius:43px;
+            border-radius:43px;
+        }
+        .odd{
+            margin: 5px;
+            height:80px;
+            width:80px;
+            border:6px solid yellow;
+            -webkit-border-radius:43px;
+            -ms-border-radius:43px;
+            -moz-border-radius:43px;
+            -o-border-radius:43px;
+            border-radius:43px;
+        }
+        .even{
+            margin: 5px;
+            height:80px;
+            width:80px;
+            border:6px solid yellow;
+            -webkit-border-radius:43px;
+            -ms-border-radius:43px;
+            -moz-border-radius:43px;
+            -o-border-radius:43px;
+            border-radius:43px;
+        }
+        .line-row{
+            margin: 5px;
+            height:80px;
+            width:80px;
+            border:6px solid yellow;
+            -webkit-border-radius:25px;
+            -ms-border-radius:20px;
+            -moz-border-radius:20px;
+            -o-border-radius:20px;
+            border-radius:20px;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="生成一张图片"/>
+<input type="button" value="奇数"/>
+<input type="button" value="偶数"/>
+<input type="button" value="奇数行"/>
+<input type="button" value="偶数列"/>
+<input type="button" value="偶数行"/>
+<input type="button" value="奇数列"/>
+<div class="area"></div>
+<script>
+    var btn=document.querySelectorAll("input");
+    var area=document.querySelector(".area");
+    var n=0;//计数变量
+    var arr=new Array();
+    var pics=["pic/00.jpg","pic/38.jpg","pic/39.jpg"];
+    function selectFrom(min,max){
+        var len=max-min+1;
+        return Math.floor(len*Math.random()+min);
+    }
+    btn[0].onclick=function add() {
+        var pic = document.createElement("img");
+//        pic.src = pics[n%pics.length];
+        pic.src=pics[selectFrom(0,pics.length-1)];
+        //随机出现图片
+        pic.alt = "图片一";
+        pic.className = "photo";
+        arr.push(pic);
+        area.appendChild(pic);
+        n++;
+    };//生成一张图片;
+    btn[1].onclick=function odd() {
+        for (var i = 0; i < n; i++) {
+            arr[i].className="photo";
+            if (i % 2 == 0) {
+                arr[i].className = "odd";
+            }
+        }
+    };//奇数;
+     btn[2].onclick=function even() {
+        for (var i = 0; i < n; i++) {
+            arr[i].className="photo";
+            if (i % 2 != 0) {
+                arr[i].className = "even";
+            }
+        }
+    };//偶数;
+    btn[3].onclick=function oddLine(){
+        for(var i=0;i<n;i++){
+            arr[i].className="photo";
+            var num=Math.floor(i/5)+1;
+          if(num % 2 !=0){
+              arr[i].className = "line-row";
+          }
+      }
+    };//奇数横行
+    btn[4].onclick=function oddRow(){
+        for(var i=0;i<n;i++){
+            arr[i].className="photo";
+            var num=Math.floor(i/5)+1;
+            if(num%2==0 && i%2==0){
+                arr[i].className="line-row";
+            }//奇数行的偶数
+            if(num%2!=0 && i%2!=0){
+                arr[i].className="line-row";
+            }//偶数行的奇数
+        }
+    };//偶数列
+     btn[5].onclick=function evenLine(){
+        for(var i=0;i<n;i++){
+            arr[i].className="photo";
+            var num=Math.floor(i/5)+1;
+          if(num % 2 ==0){
+              arr[i].className = "line-row";
+          }
+      }
+    };//偶数横行
+    btn[6].onclick=function oddRow(){
+        for(var i=0;i<n;i++){
+            arr[i].className="photo";
+            var num=Math.floor(i/5)+1;
+            if(num%2==0 && i%2!=0){
+                arr[i].className="line-row";
+            }//偶数行的奇数
+            if(num%2!=0 && i%2==0){
+                arr[i].className="line-row";
+            }//奇数行的偶数
+        }
+    };//奇数列
+</script>
+</body>
+</html>

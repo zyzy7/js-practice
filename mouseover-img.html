@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>图片随鼠标经过而展现</title>
+    <style>
+        body{
+            font-size:0;
+            /*行框的排列会受到中间空白（回车/空格）等的影响，因为空格也属于字符，这些空白也会被应用样式，占据空间，所以会有间隔*/
+            /*或者使用浮动*/
+        }
+        body,ul{
+            margin:0;
+            padding:0;
+        }
+        .img{
+            /*overflow: hidden;*/
+            height:500px;
+            width:440px;
+            background:url(pic/13.jpg) no-repeat;
+        }
+        .mask{
+            display: inline-block;
+            list-style: none;
+            height:50px;
+            width:44px;
+            -webkit-opacity:0.5;
+            -moz-opacity:0.5;
+            -ms-opacity:0.5;
+            -o-opacity:0.5;
+            opacity:0.5;
+            background:#eee;
+        }
+        .dispear{
+            display: inline-block;
+            list-style: none;
+            box-sizing:border-box;
+            height:50px;
+            width:44px;
+            -webkit-opacity:1;
+            -moz-opacity:1;
+            -ms-opacity:1;
+            -o-opacity:1;
+            opacity:1;
+            border:1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <ul class="img"></ul>
+    <script>
+        var oContainer=document.querySelector(".img");
+        for(var i=0;i<120;i++){
+            var ele=document.createElement("li");
+//            ele.innerHTML="1";
+            //不添加文本内容的时候，纵向会出现3px空隙，
+            ele.className="mask";
+            oContainer.appendChild(ele);
+            ele.onmouseover=function(){
+                this.className="dispear";
+            }
+        }
+    </script>
+</body>
+</html>

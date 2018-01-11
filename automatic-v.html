@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh">
+    <meta charset="UTF-8">
+    <title>自动生成v字</title>
+    <style>
+        .boxes{
+            position: absolute;
+            height: 500px;
+            width:500px;
+            background:#ddd;
+        }
+        .box{
+            position:relative;
+            display: inline-block;
+            height:50px;
+            width:50px;
+            background:red;
+            line-height: 50px;
+            text-align:center;
+            font-size:26px;
+        }
+    </style>
+</head>
+<body>
+<input class="btn" type="button" value="点击生成v"/>
+<div class="boxes"></div>
+<script>
+//    window.onload=function(){
+//        var btn=document.querySelector(".btn");
+//        var box=document.querySelector(".boxes");
+//        btn.onclick=function(){
+//            var len=9;
+//            var middle=Math.floor(len/2)+1;
+//            for(var i=0;i<len;i++) {
+//                var ele = document.createElement("div");
+//                ele.className="box";
+//                var num=document.createTextNode(i+1);
+//                ele.appendChild(num);
+////                生成div并且标明数字
+//// 因为单位的问题，拼接两个px
+////                var hei = ele.style.height;
+//                if (i < middle)
+//                    ele.style.top = (i+1) * 50+"px";
+//                else
+//                    ele.style.top = (len - i) * 50+"px";
+//                box.appendChild(ele);
+//              }
+//        };
+//    };
+    //29-50行为自动生成v基础
+window.onload=function(){
+    var btn=document.querySelector(".btn");
+    var box=document.querySelector(".boxes");
+    btn.onclick=function(){
+        var len=9;
+        var middle=Math.floor(len/2)+1;
+        for(var i=0;i<len;i++) {
+            var ele = document.createElement("div");
+            ele.className="box";
+            var num=document.createTextNode(i+1);
+            ele.appendChild(num);
+//                生成div并且标明数字
+// 因为单位的问题，拼接两个px
+//                var hei = ele.style.height;
+            if (i < middle)
+                ele.style.top = (i+1) * 50+"px";
+            else
+                ele.style.top = (len - i) * 50+"px";
+            box.appendChild(ele);
+        }
+    };
+};
+
+</script>
+</body>
+</html>

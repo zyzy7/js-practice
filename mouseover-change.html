@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>鼠标经过更改box样式</title>
+    <style>
+        body,dl,dd,dt{
+            margin:0;
+        }
+        a{
+            text-decoration:none;
+        }
+        .wrap {
+            position:relative;
+            height: 425px;
+            width: 727px;
+            background: #fff;
+            border-bottom: 5px solid #1f1f1f;
+            border-right:2px solid #1f1f1f;
+        }
+        .title{
+            font-weight:800;
+            vertical-align:bottom;
+        }
+        .title a{
+            display:inline-block;
+            height:40px;
+            width:100px;
+            line-height:40px;
+            text-align:center;
+            background:#ff0000;
+            color:#fff;
+        }
+        .box{
+            margin-top: 10px;
+            height: 50px;
+            width:50px;
+            border:3px solid #000;
+        }
+        .change-area{
+            box-sizing:border-box;
+            position:absolute;
+            bottom:0;
+            right:0;
+            height:240px;
+            width:343px;
+            padding:20px 35px;
+            border:20px solid #9c949c;
+            text-align:center;
+            background: #fff;
+            z-index:999999;
+        }
+        dl{
+            margin-bottom:3px;
+            font-size:15px;
+            text-align:left;
+        }
+        dt,dd{
+            display:inline-block;
+        }
+        dd{
+            line-height: 30px;
+            padding: 2px;
+            margin-left: 3px;
+            background: #d6a062;
+            cursor:pointer;
+        }
+        dd:hover{
+            background: #95bf52;
+        }
+        .re,.ce{
+            display: inline-block;
+            margin-top: 8px;
+            padding: 5px 10px;
+            background:#002944;
+            color:#fff;
+            cursor:pointer;
+        }
+        .re:hover,.ce:hover{
+            background:#d44950;
+        }
+        .mask{
+            position:fixed;
+            top:0;
+            left:0;
+            bottom:0;
+            right:0;
+            height: 425px;
+            width: 727px;
+            background: #808080;
+            -webkit-opacity:0.5;
+            -moz-opacity: 0.5;
+            -ms-opacity: 0.5;
+            -o-opacity: 0.5;
+            opacity: 0.5;
+            z-index: 999996;
+        }
+    </style>
+</head>
+<body>
+<!--遮罩层写法-->
+<!--优化写法-->
+<!--透明度准确标准写法-->
+<div class="a"></div>
+<div class="wrap">
+    <div class="title">请为底下的div设置样式：<a href="#" class="click-set">点击设置</a></div>
+    <div class="box"></div>
+    <div class="change-area" style="display: none">
+        <dl class="color">
+            <dt>设置颜色:</dt>
+            <dd class="red">红色</dd>
+            <dd class="yel">黄色</dd>
+            <dd class="gre">绿色</dd>
+        </dl>
+        <dl class="height">
+            <dt>设置高度:</dt>
+            <dd class="h-100">100px</dd>
+            <dd class="h-150">150px</dd>
+            <dd class="h-200">200px</dd>
+        </dl>
+        <dl class="width">
+            <dt>设置宽度:</dt>
+            <dd class="w-100">100px</dd>
+            <dd class="w-150">150px</dd>
+            <dd class="w-200">200px</dd>
+        </dl>
+        <div class="re">恢复</div>
+        <div class="ce">确定</div>
+    </div>
+</div>
+<script>
+    window.onload=function (){
+        var set=document.getElementsByClassName("click-set")[0];
+        var bgC=document.getElementsByClassName("a")[0];
+        var select=document.getElementsByClassName("change-area")[0];
+        var box=document.getElementsByClassName("box")[0];
+        var red=document.getElementsByClassName("red")[0];
+        var yel=document.getElementsByClassName("yel")[0];
+        var gre=document.getElementsByClassName("gre")[0];
+        var h100=document.getElementsByClassName("h-100")[0];
+        var h150=document.getElementsByClassName("h-150")[0];
+        var h200=document.getElementsByClassName("h-200")[0];
+        var w100=document.getElementsByClassName("w-100")[0];
+        var w150=document.getElementsByClassName("w-150")[0];
+        var w200=document.getElementsByClassName("w-200")[0];
+        var re=document.getElementsByClassName("re")[0];
+        var ce=document.getElementsByClassName("ce")[0];
+        set.onclick=function addClassName(){
+//            bgC.className="mask";
+            bgC.setAttribute("class","mask");
+            select.style.display="block";
+        };
+        red.onmouseover=function changeColor(){
+           box.style.background="red";
+        };
+        yel.onmouseover=function changeColor(){
+           box.style.background="yellow";
+        };
+        gre.onmouseover=function changeColor(){
+           box.style.background="green";
+        };
+        h100.onmouseover=function changeHeight(){
+           box.style.height="100"+"px";
+        };
+        h150.onmouseover=function changeHeight(){
+           box.style.height="150"+"px";
+        };
+        h200.onmouseover=function changeHeight(){
+           box.style.height="200"+"px";
+        };
+        w100.onmouseover=function changeWidth(){
+           box.style.width="100"+"px";
+        };
+        w150.onmouseover=function changeWidth(){
+           box.style.width="150"+"px";
+        };
+        w200.onmouseover=function changeWidth(){
+           box.style.width="200"+"px";
+        };
+        re.onclick=function re(){
+            box.style.height="50"+"px";
+            box.style.width="50"+"px";
+            box.style.background="#fff";
+        };
+        ce.onclick=function ce(){
+            bgC.setAttribute("class","a");
+            select.style.display="none";
+        };
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh">
+    <meta charset="UTF-8">
+    <title>自动生成十个随机颜色li</title>
+    <style>
+        body,ul{
+            margin:0;
+            padding:0;
+        }
+        li{
+            display:inline-block;
+            list-style: none;
+            text-align:center;
+            margin-left:5px;
+            margin-bottom:5px;
+            width: 50px;
+            height: 50px;
+            border:1px #000 solid;
+            background:red;
+            line-height:50px;
+            font-size:25px;
+        }
+    </style>
+</head>
+<body>
+<input class="btn" type="button" value="点击生成10个li"/>
+<ul class="list"></ul>
+<script>
+    window.onload=function(){
+        var btn=document.getElementsByClassName("btn")[0];
+        var list=document.getElementsByClassName("list")[0];
+        var colors=["blue","purple","pink","yellow","green","red"];
+        function selectFrom(min,max){
+            var num =max-min+1;
+            return Math.floor(Math.random()*num+min);
+        }
+        //生成随机颜色
+        btn.onclick=function(){
+            for(var i=0;i<10;i++){
+                var Ele=document.createElement("li");
+                Ele.innerHTML=i+1;
+//                var txt=document.createTextNode(i+1);
+//                Ele.childNodes[0].nodeValue=txt;因为创建的li没有内容，所以它并没有文本节点，直接更改不会成功
+//                Ele.appendChild(txt);
+                Ele.style.backgroundColor=colors[selectFrom(0,colors.length-1)];
+                list.appendChild(Ele);
+            }
+        };
+    };
+</script>
+</body>
+</html>

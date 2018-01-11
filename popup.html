@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh">
+    <meta charset="UTF-8">
+    <title>自动弹出提示框</title>
+    <style>
+        .wrap{
+            font-size:0;
+            width:400px;
+            border:1px solid #000;
+        }
+        .box,.box img{
+            box-sizing:border-box;
+        }
+        .box{
+            position:relative;
+            display:inline-block;
+            margin-left:16px;
+            margin-bottom:10px;
+            height:100px;
+            width:80px;
+            vertical-align: top;
+            border:1px solid #000;
+            font-size:15px;
+        }
+        .box img{
+            margin-left:-1px;
+            margin-top:-1px;
+            height:80px;
+            width:80px;
+            border:1px solid #000;
+        }
+        span{
+            display:block;
+        }
+        .popup {
+            display:none;
+            position: absolute;
+            top:-10px;
+            left:50%;
+            height: 50px;
+            width: 100px;
+            background:RGBa(53,70,255,0.4);
+            color:#fff;
+            font-size:15px;
+            z-index:999999;
+        }
+        /*弹窗*/
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="box">
+        <img src="#" alt="1"/>
+        <span class="instr">说明一</span>
+        <div class="popup">弹窗一</div>
+    </div>
+    <div class="box">
+        <img src="#" alt="图片"/>
+        <span class="instr">说明一</span>
+        <div class="popup">弹窗一</div>
+    </div>
+    <div class="box">
+        <img src="#" alt="图片"/>
+        <span class="instr">说明一</span>
+        <div class="popup">弹窗一</div>
+    </div>
+    <div class="box">
+        <img src="#" alt="图片"/>
+        <span class="instr">说明一</span>
+        <div class="popup">弹窗一</div>
+    </div>
+    <div class="box">
+        <img src="#" alt="图片"/>
+        <span class="instr">说明一</span>
+        <div class="popup">弹窗一</div>
+    </div>
+    <div class="box">
+        <img src="#" alt="图片"/>
+        <span class="instr">说明一</span>
+        <div class="popup">弹窗一</div>
+    </div>
+    <div class="box">
+        <img src="#" alt="图片"/>
+        <span class="instr">说明一</span>
+        <div class="popup">弹窗一</div>
+    </div>
+    <div class="box">
+        <img src="#" alt="图片"/>
+        <span class="instr">说明一</span>
+        <div class="popup">弹窗一</div>
+    </div>
+</div>
+<script>
+    var ele=document.querySelectorAll(".box");
+    var popup=document.querySelectorAll(".popup");
+    var len=ele.length;
+    for(var i=0;i<len;i++){
+        ele[i].onmouseover = function () {
+//           var nleng=this.childNodes.length;
+//            for (var j = 0; j < nleng; j++) {
+//                if (this.childNodes[j].className == "popup") {
+//                    this.childNodes[j].style.display = "block";
+//                }
+//            }
+            //上述注释处方法较为麻烦
+            this.getElementsByClassName("popup")[0].style.display="block";
+        };//鼠标移入
+        ele[i].onmouseout = function () {
+//           var nleng=this.childNodes.length;
+//            for (var j = 0; j < nleng; j++) {
+//                if (this.childNodes[j].className == "popup") {
+//                    this.childNodes[j].style.display = "none";
+//                }
+//            }
+            this.getElementsByClassName("popup")[0].style.display="none";
+        };//鼠标移出
+    }
+</script>
+</body>
+</html>

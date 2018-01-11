@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh">
+    <meta charset="UTF-8">
+    <title>图片轮播切换</title>
+    <style>
+        body,p{
+            margin:0;
+        }
+        img{
+            border: none;
+        }
+        .wrap{
+            height: 500px;
+            width: 500px;
+            text-align:center;
+        }
+        .cont {
+            position:relative;
+            display: inline-block;
+            box-sizing: border-box;
+            height: 320px;
+            width: 420px;
+            background: #5bc0de;
+        }
+        .pics{
+            width: 400px;
+            height: 300px;
+            border: 10px solid #c6c6c6;
+        }
+        .page,.intro,.last,.next{
+            position:absolute;
+        }
+        .page,.intro{
+            left:10px;
+            width: 400px;
+            height:30px;
+            color:#fff;
+            line-height:30px;
+            font-weight:700;
+            background:rgba(0,0,0,0.3);
+        }
+        .page{
+            top:10px;
+            /*opacity:.3;文字也会透明*/
+        }
+        .intro{
+            bottom: 10px;
+        }
+        .last,.next{
+            top:100px;
+            height: 105px;
+            width:105px;
+            opacity:0.2;
+            z-index:999999;
+        }
+        .last:hover,.next:hover{
+            opacity: 0.9;
+        }
+        .last{
+            left: 10px;
+            background: url(pic/arrow-icon.jpg) no-repeat;
+        }
+        .next{
+            right:10px;
+            background:url(pic/arrow-icon.jpg) no-repeat -105px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <input type="button" value="循环切换"/>
+        <input type="button" value="顺序切换"/>
+        <div class="cont">
+            <img class="pics" src="pic/1.jpg" alt="图片1"/>
+            <p class="page">1/4</p>
+            <p class="intro">图片1</p>
+            <!--两个遮罩层-->
+            <a href="javascript:void(0);" class="last"></a>
+            <a href="javascript:void(0);" class="next"></a>
+        </div>
+    </div>
+    <script>
+        window.onload=function(){
+            var btn=document.getElementsByTagName("input");
+//            切换方式
+            var pic=document.getElementsByClassName("pics")[0];
+            var page=document.getElementsByClassName("page")[0];
+            var intro=document.getElementsByClassName("intro")[0];
+            var last=document.getElementsByClassName("last")[0];
+            var next=document.getElementsByClassName("next")[0];
+            var j=true;
+            //            判断是循环切换0,还是顺序切换1,默认为循环切换
+            var pics=new Array();
+//            var max=pic.length;放在这里仍然是0
+            pics[0]="pic/1.jpg";
+            pics[1]="pic/2.jpg";
+            pics[2]="pic/3.jpg";
+            pics[3]="pic/4.jpg";
+            var max=pics.length;
+            var ln=0;
+//            记录当前图片页码
+            btn[0].onclick=function(){
+                j=true;
+            };
+//            循环切换
+            btn[1].onclick=function(){
+               j=false;
+            };
+//            顺序切换
+            function replace(){
+                pic.src=pics[ln];//更改图片
+                pic.alt="图片"+(ln+1);//更改图片占位符
+                page.firstChild.nodeValue=(ln+1)+"/"+max;//更改页码显示
+                intro.firstChild.nodeValue="图片"+(ln+1);//更改图片介绍
+            }
+            last.onclick=function(){
+                if(j){
+//                    循环切换
+                    if(ln==0){ln=max-1;}
+                    else{ln=ln-1;}
+                    replace();
+                }
+                else{
+//                    顺序切换
+                    if(ln==0){alert("已经是第一张")}
+                    else{ln=ln-1;}
+                    replace();
+                }
+            };
+//            上一页
+            next.onclick=function(){
+                if(j){
+//                    循环切换
+                    if(ln==(max-1)){ln=0;}
+                    else{ln=ln+1;}
+                    replace();
+                }
+                else{
+//                    顺序切换
+                    if(ln==max-1){alert("已经是最后一页");}
+                    else{ln=ln+1;}
+                    replace();
+                }
+            };
+//            下一页
+        };
+    </script>
+</body>
+</html>

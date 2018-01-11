@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>点击展开和收缩</title>
+    <style>
+        body,p,form,h1,h2,h3,h4,h5,dd,dl,dt{
+            margin:0;
+        }
+        div{
+            width: 50px;
+        }
+       ul{margin:0;
+           padding:0;
+           color:#0000cc;
+           font-size: 13px;
+           text-align: center;
+       }
+       h1{
+           cursor:pointer;
+           font-size: 14px;
+           color:#0000cc;
+       }
+        li{
+            list-style:none;
+            padding: 5px;
+            border-left: 1px solid #9a99ff;
+            border-right: 1px solid #9a99ff;
+            cursor:pointer;
+        }
+        li:hover{
+            background: #d9e1f6;
+        }
+        .top{
+            border-top:1px solid #9a99ff;
+        }
+        .bottom{
+            border-bottom:1px solid #9a99ff;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h1 class="title">输入法</h1>
+    <ul class="list">
+        <li class="top">手写</li>
+        <li>拼音</li>
+        <li class="bottom">关闭</li>
+    </ul>
+</div>
+<script>
+    window.onload=function (){
+        var title=document.getElementsByClassName("title")[0];
+        var list=document.getElementsByClassName("list")[0];
+        title.onclick=function(){
+            if(list.style.display=="none"){
+                list.style.display="block";
+            }
+            else{
+                list.style.display="none";
+            }
+        };
+    }
+
+</script>
+</body>
+</html>

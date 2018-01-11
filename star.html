@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>模拟点亮星星</title>
+    <style>
+        body {
+            margin:0;
+        }
+        ul {
+            margin: 0;
+        }
+        li{
+            display: inline-block;
+            list-style:none;
+            height: 100px;
+            width: 100px;
+            border: 1px solid #000;
+        }
+        .on {
+            background: #008000;
+        }
+        .off {
+            background: #FF0000;
+        }
+    </style>
+</head>
+<body>
+   <ul>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+   </ul>
+   <script>
+       var aLi = document.querySelectorAll("li");
+       var nLen = aLi.length;
+       var bClick = false;//判断是否出现点击
+       var nClick = "0";//判断点击的index索引值
+       //循环对每个li添加事件，鼠标移入移到该处将其前面变绿后面变红，当没出现点击时，移出清除所有。点击添加
+       //点击的li的index索引值，效果和移入相同。只是移出改成记录的索引值的前后红色绿色情况
+       for(var i=0;i<nLen;i++) {
+            aLi[i].index = i+1;
+           aLi[i].addEventListener('mouseover',function(){
+               show(this.index);
+           },false);
+
+           aLi[i].addEventListener('mouseout',function(){
+               if(bClick) {
+                   show(nClick);
+               }
+               else {
+                   show(0);
+               }
+
+           },false);
+
+           aLi[i].addEventListener('click',function(){
+               nClick = this.index;
+               show(nClick);
+               bClick = true;
+           },false);
+       }
+
+
+       function show(temp) {
+           for(var j=0;j<nLen;j++){
+               aLi[j].className = j<temp?"on":"off";
+           }
+       }
+   </script>
+</body>
+</html>
